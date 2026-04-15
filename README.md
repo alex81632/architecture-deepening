@@ -12,7 +12,7 @@ Instead of defaulting to generic architecture advice, it focuses on:
 - finding fragmented workflows
 - detecting shallow module boundaries
 - proposing deeper interfaces
-- comparing multiple design options
+- comparing design options when useful
 - planning safe, incremental refactors
 - improving testability and navigability
 
@@ -21,13 +21,12 @@ Instead of defaulting to generic architecture advice, it focuses on:
 Given a repository, subsystem, or feature area, the skill will:
 
 1. explore the code and identify architectural friction
-2. find candidates for deepening shallow modules
-3. score and prioritize those candidates
-4. choose or recommend one candidate to focus on
-5. generate 3 interface options
-6. recommend the best option
-7. create a step-by-step migration plan
-8. define verification and testing guidance
+2. find one or more candidates for deepening shallow modules
+3. prioritize or recommend the strongest candidate
+4. compare interface options when there is a real trade-off
+5. recommend a direction
+6. create an incremental migration plan when change is proposed
+7. define verification and testing guidance
 
 The skill is intended to help with:
 - backend workflows
@@ -62,19 +61,18 @@ This skill does _not_ assume that better architecture means:
 ## Repository structure
 
 ```text
-.claude/
-└── skills/
-    └── architecture-deepening/
-        ├── SKILL.md
-        ├── HEURISTICS.md
-        ├── REFERENCE.md
-        ├── OUTPUT_TEMPLATES.md
-        └── examples/
-            ├── backend-service-example.md
-            └── frontend-state-example.md
+architecture-deepening/
+├── README.md
+├── SKILL.md
+├── HEURISTICS.md
+├── REFERENCE.md
+├── OUTPUT_TEMPLATES.md
+└── examples/
+    ├── backend-service-example.md
+    └── frontend-state-example.md
 ```
 
-For Cursor, you can also place it under:
+For installation, copy the files into a skill directory such as:
 
 ```text
 .cursor/
@@ -148,7 +146,7 @@ doing less.
 
 ## How it works
 
-The skill follows a structured workflow:
+The skill follows an adaptive workflow:
 
 ### 1. Explore
 It explores the codebase and looks for:
@@ -159,13 +157,11 @@ It explores the codebase and looks for:
 - weak test boundaries
 
 ### 2. Generate candidates
-It produces 3 to 5 refactoring candidates and scores each one on:
-- coupling pain
-- change frequency
-- test pain
-- interface shallowness
-- migration risk
-- expected payoff
+If the scope is broad, it identifies 2 to 5 candidates. If the scope is
+already narrow, one strong candidate may be enough.
+
+Scoring is optional. When used, it is meant to clarify trade-offs rather than
+create false precision.
 
 ### 3. Frame the chosen problem
 It identifies:
@@ -175,7 +171,12 @@ It identifies:
 - the constraints that shape the design
 
 ### 4. Design multiple interfaces
-It proposes 3 options:
+It proposes only as many options as the problem deserves:
+- 1 option if the direction is obvious
+- 2 options when there is a meaningful trade-off
+- 3 options only when the design space is genuinely contested
+
+Typical option shapes include:
 - minimal interface
 - flexible interface
 - common-case optimized interface
@@ -193,19 +194,30 @@ It suggests:
 - regression checks
 - integration checks when needed
 
+### 8. Produce the requested artifact
+It returns the smallest useful artifact by default and expands into a formal
+review, RFC, issue, checklist, or implementation plan only when requested.
+
+## Working modes
+
+The skill adapts its depth to the request:
+- `Quick review`: identify the strongest opportunities and recommend one direction
+- `Deep review`: compare candidates, explore alternatives, and include migration
+- `Artifact mode`: produce an RFC, issue draft, checklist, or implementation plan
+
 ## Output shape
 
-Unless you ask for a different format, the skill usually returns:
+By default, the skill stays concise and expands only when needed.
 
-- scope
-- candidate opportunities
-- chosen candidate
-- problem framing
-- interface options
+Most answers use a compact shape:
+
+- scope and assumptions
+- best candidate or top candidates
 - recommendation
-- migration plan
+- migration notes
 - verification strategy
-- success criteria
+
+Longer, sectioned output is reserved for deep reviews and formal artifacts.
 
 ## Example prompts
 
@@ -346,6 +358,8 @@ This skill is not trying to:
   - no breaking API changes
   - no framework migration
 - ask for a specific output if needed:
+  - quick review
+  - deep review
   - review
   - RFC
   - issue
