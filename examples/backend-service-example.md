@@ -120,7 +120,11 @@ This is a classic shallow design:
 - orchestration spread outward
 - weak ownership of business invariants
 
-## Example output from the skill
+## Example deep review output from the skill
+
+This example shows a fuller, structured analysis. In normal use, the skill may
+return something shorter unless the user asks for a deep review or formal
+artifact.
 
 ## Architecture Deepening Review
 

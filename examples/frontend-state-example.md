@@ -144,7 +144,11 @@ This is still shallow because:
 - the public feature boundary is weak
 - tests likely need to mount the page and know too much about internals
 
-## Example output from the skill
+## Example deep review output from the skill
+
+This example shows a fuller, structured analysis. In normal use, the skill may
+return something shorter unless the user asks for a deep review or formal
+artifact.
 
 ## Architecture Deepening Review
 

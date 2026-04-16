@@ -1,7 +1,10 @@
 # Output Templates
 
 Use these templates when the user asks for a specific artifact. Adapt them to
-the repository and the scope analyzed.
+the repository, the scope analyzed, and the depth requested.
+
+Prefer the smallest useful artifact. Expand only when the task genuinely needs
+more structure.
 
 ## Template: Architecture Deepening Review
 
@@ -16,54 +19,16 @@ the repository and the scope analyzed.
 
 ### 2. Candidate Opportunities
 
-#### Candidate 1: <name>
-- Cluster:
-- Current responsibility split:
-- Why coupled:
-- Why shallow today:
-- Expected deeper boundary:
-- Dependency category:
-- Scores:
-  - Coupling pain:
-  - Change frequency:
-  - Test pain:
-  - Interface shallowness:
-  - Migration risk:
-  - Expected payoff:
-- Priority:
-- Evidence:
+Repeat this block only as many times as needed.
 
-#### Candidate 2: <name>
+#### Candidate: <name>
 - Cluster:
 - Current responsibility split:
 - Why coupled:
 - Why shallow today:
 - Expected deeper boundary:
 - Dependency category:
-- Scores:
-  - Coupling pain:
-  - Change frequency:
-  - Test pain:
-  - Interface shallowness:
-  - Migration risk:
-  - Expected payoff:
-- Priority:
-- Evidence:
-
-#### Candidate 3: <name>
-- Cluster:
-- Current responsibility split:
-- Why coupled:
-- Why shallow today:
-- Expected deeper boundary:
-- Dependency category:
-- Scores:
-  - Coupling pain:
-  - Change frequency:
-  - Test pain:
-  - Interface shallowness:
-  - Migration risk:
-  - Expected payoff:
+- Scores: optional
 - Priority:
 - Evidence:
 
@@ -80,25 +45,11 @@ the repository and the scope analyzed.
 
 ### 5. Interface Options
 
-#### Option A — Minimal Interface
-- Interface sketch:
-- Example usage:
-- Hidden complexity:
-- Dependency strategy:
-- Trade-offs:
-- Test impact:
-- Overengineering risk:
+Include this section only when comparing alternatives.
 
-#### Option B — Flexible Interface
-- Interface sketch:
-- Example usage:
-- Hidden complexity:
-- Dependency strategy:
-- Trade-offs:
-- Test impact:
-- Overengineering risk:
+Repeat the option block only as many times as needed.
 
-#### Option C — Common-case Optimized
+#### Option: <name>
 - Interface sketch:
 - Example usage:
 - Hidden complexity:
@@ -203,19 +154,10 @@ Describe the current pain in concrete terms.
 
 ## Design Options
 
-### Option A — Minimal Interface
-- Interface:
-- Benefits:
-- Drawbacks:
-- Migration shape:
+Include only the options that matter. One option is fine if the direction is
+obvious. Use two or three only when there is a real trade-off.
 
-### Option B — Flexible Interface
-- Interface:
-- Benefits:
-- Drawbacks:
-- Migration shape:
-
-### Option C — Common-case Optimized
+### Option: <name>
 - Interface:
 - Benefits:
 - Drawbacks:

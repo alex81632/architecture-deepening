@@ -236,6 +236,14 @@ src/services/billing/.
 Focus on reducing orchestration in handlers and improving testability.
 ```
 
+### Quick review
+
+```text
+Use architecture-deepening on src/payments/refunds.
+Give me a quick review: identify the strongest deepening opportunity, recommend
+one direction, and keep the answer concise.
+```
+
 ### Frontend feature
 
 ```text
@@ -315,11 +323,11 @@ Templates for:
 - implementation plan
 
 ### `examples/backend-service-example.md`
-A backend example where order creation is fragmented across handlers and
+A backend deep review example where order creation is fragmented across handlers and
 services.
 
 ### `examples/frontend-state-example.md`
-A frontend example where a page coordinates too much feature state and workflow
+A frontend deep review example where a page coordinates too much feature state and workflow
 logic directly.
 
 ## Design goals
